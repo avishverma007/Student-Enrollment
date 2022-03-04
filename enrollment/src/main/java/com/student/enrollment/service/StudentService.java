@@ -12,5 +12,7 @@ public interface StudentService {
 	public Long addStudent(StudentDTO student) throws StudentEnrollmentException;
 	public void updateStudent(Long studentId, String emailId) throws StudentEnrollmentException;
 	public void deleteStudent(Long studentId) throws StudentEnrollmentException;
-	
+	public Long addStudentJson(StudentDTO student) throws Exception;
+	public StudentDTO getStudentJson(Long studentId) throws Exception;
+	public void updateStudentJson(Long studentId, String emailId) throws Exception;
 }

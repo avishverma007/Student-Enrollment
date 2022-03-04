@@ -1,0 +1,10 @@
+{
+    "id":"1",
+    "name":"sam",
+    "gender":"male",
+    "age":"18",
+    "email":"abc@gmail.com",
+    "mobile":"1919191919",
+    "course":"BE",
+    "fieldOfStudy":"Science"
+}
