@@ -35,8 +35,8 @@ public class StudentAPI {
 		return new ResponseEntity<>(sdtoList, HttpStatus.OK);
 	}
 	
-	@GetMapping(value = "/customers/{customerId}")
-	public ResponseEntity<StudentDTO> getCustomer(@PathVariable Long studentId) throws StudentEnrollmentException {
+	@GetMapping(value = "/students/{studentId}")
+	public ResponseEntity<StudentDTO> getStudent(@PathVariable Long studentId) throws StudentEnrollmentException {
 		StudentDTO sdto = studentService.getStudent(studentId);
 		return new ResponseEntity<>(sdto, HttpStatus.OK);
 	}
@@ -58,10 +58,33 @@ public class StudentAPI {
 		return new ResponseEntity<>(msg, HttpStatus.OK);
 	}
 	
-	@DeleteMapping(value = "/customers/{customerId}")
+	@DeleteMapping(value = "/students/{studentId}")
 	public ResponseEntity<String> deleteStudent(@PathVariable Long studentId) throws StudentEnrollmentException {
 		studentService.deleteStudent(studentId);
 	//	String successMessage = environment.getProperty("API.DELETE_SUCCESS");
+		String msg="success";
+		return new ResponseEntity<>(msg, HttpStatus.OK);
+	}
+	
+	@PostMapping(value = "/studentsJson")
+	public ResponseEntity<String> addStudentJson(@RequestBody StudentDTO student) throws Exception {
+		Long studentId = studentService.addStudentJson(student);
+	//	String successMessage = environment.getProperty("API.INSERT_SUCCESS") + studentId;
+		String msg="success";
+		return new ResponseEntity<>(msg, HttpStatus.CREATED);
+	}
+	
+	@GetMapping(value = "/students/{studentId}")
+	public ResponseEntity<StudentDTO> getStudentJson(@PathVariable Long studentId) throws Exception {
+		StudentDTO sdto = studentService.getStudentJson(studentId);
+		return new ResponseEntity<>(sdto, HttpStatus.OK);
+	}
+	
+	@PutMapping(value = "/students/{studentId}")
+	public ResponseEntity<String> updateStudentJson(@PathVariable Long studentId, @RequestBody StudentDTO sdto)
+			throws Exception {
+		studentService.updateStudentJson(studentId, sdto.getEmail());
+	//	String successMessage = environment.getProperty("API.UPDATE_SUCCESS");
 		String msg="success";
 		return new ResponseEntity<>(msg, HttpStatus.OK);
 	}
